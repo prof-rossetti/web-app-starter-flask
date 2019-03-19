@@ -10,8 +10,8 @@
 
   <body>
     <!-- FLASH MESSAGING -->
-    <!-- adapted from: http://flask.pocoo.org/docs/1.0/patterns/flashing/#flashing-with-categories -->
-    <!-- adapted from: https://github.com/data-creative/express-on-rails-starter-app/blob/mongo-deploy/app/views/_bootstrap_flash_messages.ejs -->
+    <!-- see: http://flask.pocoo.org/docs/1.0/patterns/flashing/#flashing-with-categories -->
+    <!-- see: https://getbootstrap.com/docs/4.3/components/alerts/ -->
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}

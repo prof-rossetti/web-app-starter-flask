@@ -21,5 +21,5 @@ def create():
     #return jsonify(request.form)
 
     product_name = request.form["product_name"]
-    flash(f"Product '{product_name}' created successfully!", "success")
+    flash(f"Product '{product_name}' created successfully!", "success") # use the "success" category to correspond with twitter bootstrap alert colors
     return redirect("/products")
