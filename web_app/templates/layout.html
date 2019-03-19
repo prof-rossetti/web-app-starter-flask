@@ -24,18 +24,31 @@
     {% endwith %}
 
     <!-- SITE NAVIGATION -->
-    <div class="container">
-      <div id="nav">
-        {% block nav %}
-          <h1><a href="/">My Starter Web App</a></h1>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">My Starter Web App</a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse text-right" id="navbarTogglerDemo02">
+        <div class="my-2 my-lg-0">
           <ul>
             <li><a href="/hello">Hello Page</a></li>
             <li><a href="/products">Products Page</a></li>
             <li><a href="/products/new">New Product Form</a></li>
           </ul>
-        {% endblock %}
+        </form>
       </div>
-      <hr>
+    </nav>
+
+
+
+
+
+    <!-- CONTAINER -->
+    <div class="container">
 
       <!-- PAGE CONTENTS -->
       <div id="content">
