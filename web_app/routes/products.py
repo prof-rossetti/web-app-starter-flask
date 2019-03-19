@@ -3,6 +3,10 @@ from flask import Blueprint, request, render_template, jsonify, flash, redirect 
 
 product_routes = Blueprint("product_routes", __name__)
 
+#
+# LIST (TABLE)
+#
+
 @product_routes.route("/products")
 def index():
     print("VISITING THE PRODUCTS INDEX PAGE")
@@ -25,19 +29,31 @@ def index():
     ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
     return render_template("products/index.html", products=products)
 
+#
+# NEW (FORM)
+#
+
 @product_routes.route("/products/new")
 def new():
     print("VISITING THE NEW PRODUCT PAGE")
     print("REQUEST PARAMS:", dict(request.args))
-    return render_template("products/form.html")
+    return render_template("products/new.html")
 
-@product_routes.route("/products/create", methods=["POST"])
+#
+# CREATE
+#
+
+@product_routes.route("/products", methods=["POST"])
 def create():
     print("CREATING A PRODUCT...")
     print("FORM DATA:", dict(request.form))
     product_name = request.form["product_name"]
     flash(f"Product '{product_name}' created successfully!", "success") # use the "success" category to correspond with twitter bootstrap alert colors
     return redirect("/products")
+
+#
+# SHOW
+#
 
 @product_routes.route("/products/<id>")
 def show(id):
@@ -51,3 +67,44 @@ def show(id):
     else:
         flash(f"OOPS, Couldn't find a product with an identifier of '{id}'", "danger") # use the "danger" category to correspond with twitter bootstrap alert colors
         return redirect("/products")
+
+#
+# EDIT (FORM)
+#
+
+@product_routes.route("/products/<id>/edit")
+def edit(id):
+    print(f"VISITING THE PRODUCT EDIT PAGE (#{id})")
+
+    # TODO: lookup product from the datastore by its id
+    product = {"id":16, "name": "Product X", "department": "snacks", "aisle": "ice cream toppings", "price": 4.50}
+
+    if product:
+        return render_template("products/edit.html", product=product)
+    else:
+        flash(f"OOPS, Couldn't find a product with an identifier of '{id}'", "danger") # use the "danger" category to correspond with twitter bootstrap alert colors
+        return redirect("/products")
+
+#
+# UPDATE
+#
+
+@product_routes.route("/products/<id>/update", methods=["POST"])
+def update(id):
+    print(f"UPDATING PRODUCT (#{id})")
+    # todo: lookup product from the datastore by its id
+    # ... and if exists, delete it from the datastore
+    flash(f"Updated product #{id}!", "info") # use the "info" category to correspond with twitter bootstrap alert colors
+    return redirect("/products")
+
+#
+# DESTROY
+#
+
+@product_routes.route("/products/<id>/destroy", methods=["POST"])
+def destroy(id):
+    print(f"DESTROYING PRODUCT (#{id})")
+    # todo: lookup product from the datastore by its id
+    # ... and if exists, delete it from the datastore
+    flash(f"Destroyed product #{id}!", "info") # use the "info" category to correspond with twitter bootstrap alert colors
+    return redirect("/products")

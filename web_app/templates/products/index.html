@@ -26,14 +26,14 @@
         <td>{{ product["department"] }}</td>
         <td>{{ product["price"] }}</td>
         <td>
-          <form action="#" method="GET">
+          <form action="/products/{{ product['id'] }}/edit" method="GET">
             <button class="btn btn-warning" type="submit">
               <span class="glyphicon glyphicon-pencil"></span> edit
             </button>
           </form>
         </td>
         <td>
-          <form action="#" method="POST">
+          <form action="/products/{{ product['id'] }}/destroy" method="POST">
             <button class="btn btn-danger" type="submit">
               <span class="glyphicon glyphicon-trash"></span> delete
             </button>

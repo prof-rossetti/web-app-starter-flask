@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 
 {% block title %}
-  <title>New Product | Example Web App</title>
+  <title>Edit Product | Example Web App</title>
 {% endblock %}
 
 {% block content %}
-  <h2>New Product Form</h2>
+  <h2>Edit Product Form</h2>
   <p>Please fill-in the form below...</p>
 
-  <form action="/products/create" method="POST">
+  <form action="/products/{{ product['id'] }}/update" method="POST">
     <label>Name:</label>
-    <input type="text" name="product_name" placeholder="Product XYZ" value="Product XYZ">
+    <input type="text" name="product_name" placeholder="{{ product['name'] }}">
 
     <label>Department:</label>
     <select name="department">
@@ -21,7 +21,7 @@
     </select>
 
     <label>Price:</label>
-    <input type="number" step="0.01" min="0" name="price" value="4.99" >
+    <input type="number" step="0.01" min="0" name="price" placeholder="{{ product['price'] }}" >
 
     <label>Available:</label>
     <input type="date" name="available_date" value="2019-01-01">
