@@ -17,6 +17,7 @@
   + http://jinja.pocoo.org/docs/2.10/templates/
   + http://jinja.pocoo.org/docs/2.10/templates/#assignments
   + http://flask.pocoo.org/docs/1.0/patterns/flashing/#flashing-with-categories
+  + http://flask.pocoo.org/docs/1.0/quickstart/#variable-rules
 
 ## HTML
 

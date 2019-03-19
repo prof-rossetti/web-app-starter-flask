@@ -3,11 +3,10 @@ from flask import Blueprint, request, render_template, jsonify, flash, redirect 
 
 product_routes = Blueprint("product_routes", __name__)
 
-@product_routes.route('/products')
+@product_routes.route("/products")
 def index():
     print("VISITING THE PRODUCTS INDEX PAGE")
-    # TODO: get these products from a datastore
-    products = [
+    products = [ # TODO: get these products from a datastore
         {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
         {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
         {"id":3, "name": "Robust Golden Unsweetened Oolong Tea", "department": "beverages", "aisle": "tea", "price": 2.49},
@@ -26,18 +25,29 @@ def index():
     ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
     return render_template("products/index.html", products=products)
 
-@product_routes.route('/products/new')
+@product_routes.route("/products/new")
 def new():
     print("VISITING THE NEW PRODUCT PAGE")
     print("REQUEST PARAMS:", dict(request.args))
     return render_template("products/form.html")
 
-@product_routes.route('/products/create', methods=["POST"])
+@product_routes.route("/products/create", methods=["POST"])
 def create():
     print("CREATING A PRODUCT...")
     print("FORM DATA:", dict(request.form))
-    #return jsonify(request.form)
-
     product_name = request.form["product_name"]
     flash(f"Product '{product_name}' created successfully!", "success") # use the "success" category to correspond with twitter bootstrap alert colors
     return redirect("/products")
+
+@product_routes.route("/products/<id>")
+def show(id):
+    print(f"VISITING THE PRODUCT SHOW PAGE (#{id})")
+
+    # TODO: lookup product from the datastore by its id
+    product = {"id":16, "name": "Product X", "department": "snacks", "aisle": "ice cream toppings", "price": 4.50}
+
+    if product:
+        return render_template("products/show.html", product=product)
+    else:
+        flash(f"OOPS, Couldn't find a product with an identifier of '{id}'", "danger") # use the "danger" category to correspond with twitter bootstrap alert colors
+        return redirect("/products")
