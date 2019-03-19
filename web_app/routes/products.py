@@ -21,5 +21,5 @@ def create():
     #return jsonify(request.form)
 
     product_name = request.form["product_name"]
-    flash(f"Product '{product_name}' created successfully!")
+    flash(f"Product '{product_name}' created successfully!", "success")
     return redirect("/products")
