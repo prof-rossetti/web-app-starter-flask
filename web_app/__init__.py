@@ -5,8 +5,8 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 
-from web_app.routes.home import home_routes
-from web_app.routes.products import product_routes
+from routes.home import home_routes
+from routes.products import product_routes
 
 def create_app():
     load_dotenv()
