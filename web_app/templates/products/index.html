@@ -8,12 +8,41 @@
   <h2>Products Page</h2>
   <p>Listing all products...</p>
 
-  <ul>
-    <li>Product 1</li>
-    <li>Product 2</li>
-    <li>Product 3</li>
-    <li>Product 4</li>
-    <li>Product 5</li>
-    <li>etc...</li>
-  </ul>
+    {% if products %}
+    <table class="table table-bordered table-hover table-responsive" style="width:100%">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Price</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+      </tr>
+    {% for product in products %}
+
+      <tr>
+        <td>{{ product["id"] }}</td>
+        <td><a href="/products/{{ product['id'] }}">{{ product["name"] }}</a></td>
+        <td>{{ product["department"] }}</td>
+        <td>{{ product["price"] }}</td>
+        <td>
+          <form action="#" method="GET">
+            <button class="btn btn-warning" type="submit">
+              <span class="glyphicon glyphicon-pencil"></span> edit
+            </button>
+          </form>
+        </td>
+        <td>
+          <form action="#" method="POST">
+            <button class="btn btn-danger" type="submit">
+              <span class="glyphicon glyphicon-trash"></span> delete
+            </button>
+          </form>
+        </td>
+      </tr>
+
+    {% endfor %}
+    </table>
+  {% endif %}
+
 {% endblock %}

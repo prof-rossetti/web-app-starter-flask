@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  <title>Product {{ product["id"] }} | Example Web App</title>
+{% endblock %}
+
+{% block content %}
+    <h2>{{ product["name"] }} </h2>
+    <p>Price: {{ product["price"] }}</p>
+{% endblock %}
