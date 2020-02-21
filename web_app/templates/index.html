@@ -3,4 +3,24 @@
 {% block content %}
   <h2>The Homepage</h2>
   <p>Welcome to the Homepage!</p>
+
+
+  <div class="fullscreen-video-wrap">
+    <video autoplay muted loop id="myVideo">
+      <Source src="https://media.giphy.com/media/V0SDwIXMLFH3O/giphy.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="fullscreen-video-wrap">
+    <video autoplay muted loop id="myVideo">
+      <Source src="{{ url_for('static', filename='myVideo.mp4') }}" type="video/mp4">
+    </video>
+  </div>
+
+
+
+
+
+
+
 {% endblock %}
